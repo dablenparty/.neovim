@@ -113,3 +113,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('config.lazy')
 
 vim.keymap.set('n', '<leader>lz', '<CMD>Lazy<cr>', { desc = 'Open Lazy Plugin Manager' })
+
+-- NOTE: set colorscheme after loading lazy
+vim.cmd('colorscheme everforest')
