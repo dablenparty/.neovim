@@ -110,3 +110,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- TODO: lazy plugin manager, plugins, keymaps, autocommands, and basically everything else
+require('config.lazy')
+
+vim.keymap.set('n', '<leader>lz', '<CMD>Lazy<cr>', { desc = 'Open Lazy Plugin Manager' })
