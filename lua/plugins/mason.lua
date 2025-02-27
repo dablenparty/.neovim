@@ -24,10 +24,13 @@ local servers = {
 return {
   'williamboman/mason-lspconfig.nvim',
   dependencies = {
-    'neovim/nvim-lspconfig',
-    -- mason itself
+    -- mason itself (must be first)
     { 'williamboman/mason.nvim', opts = {} },
-    -- manages & auto-updates anything installed with mason
+
+    -- neovim LSP config (no setup required)
+    'neovim/nvim-lspconfig',
+
+    -- manages & auto-updates any tools installed with mason
     {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       opts = function(_, opts)
