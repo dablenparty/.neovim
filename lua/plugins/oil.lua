@@ -1,7 +1,7 @@
 return {
   'stevearc/oil.nvim',
   lazy = false,
-  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  dependencies = { { 'echasnovski/mini.icons', opts = {} } },
   keys = {
     {
       '-',
@@ -18,6 +18,6 @@ return {
   opts = {
     view_options = {
       show_hidden = true,
-    }
+    },
   },
 }
