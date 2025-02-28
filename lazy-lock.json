@@ -31,6 +31,7 @@
   "rustaceanvim": { "branch": "master", "commit": "2b0f0b7e03751cf8ed123322f9b02d8f73fa9df7" },
   "snacks.nvim": { "branch": "main", "commit": "07f4b9adff7af45a7e0eb22d85a422e32ed4b1ca" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
+  "trouble.nvim": { "branch": "main", "commit": "85bedb7eb7fa331a2ccbecb9202d8abba64d37b3" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
   "yazi.nvim": { "branch": "main", "commit": "f445d7b99d049839fa536dcfb7dc893648e0f67a" }
