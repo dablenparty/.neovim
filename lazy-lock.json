@@ -23,6 +23,7 @@
   "nvim-treesitter": { "branch": "master", "commit": "8bc635a25f581d42b0a0e5ba8870bd73244dcdea" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "88fce4e6496950dab867a7c63a819df0ead56751" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
+  "rainbow-delimiters.nvim": { "branch": "master", "commit": "011d98eaa3a73b5a51d82ce5bc6b1397dde95562" },
   "snacks.nvim": { "branch": "main", "commit": "07f4b9adff7af45a7e0eb22d85a422e32ed4b1ca" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
