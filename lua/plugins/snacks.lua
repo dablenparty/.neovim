@@ -155,13 +155,6 @@ return {
         desc = 'Find Config File',
       },
       {
-        '<leader>ff',
-        function()
-          Snacks.picker.files { hidden = true, follow = true }
-        end,
-        desc = 'Find Files',
-      },
-      {
         '<leader>fg',
         function()
           Snacks.picker.git_files()
@@ -318,6 +311,13 @@ return {
           Snacks.picker.diagnostics_buffer()
         end,
         desc = 'Buffer Diagnostics',
+      },
+      {
+        '<leader>sf',
+        function()
+          Snacks.picker.files { hidden = true, follow = true }
+        end,
+        desc = 'Search Files',
       },
       {
         '<leader>sh',
