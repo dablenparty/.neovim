@@ -76,7 +76,6 @@ return {
         local server = servers[server_name] or {}
         require('lspconfig')[server_name].setup(server)
       end,
-      ['rust-analyzer'] = function() end,
     },
   },
 }
