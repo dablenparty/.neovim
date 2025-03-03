@@ -60,13 +60,13 @@ return {
       },
     },
 
-    -- TODO: finish implementing these
-    -- Document existing key chains
     spec = {
       { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
       { '<leader>d', group = '[D]iagnostics' },
       { '<leader>f', group = '[F]ind...' },
       { '<leader>g', group = '[G]it' },
+      { '<leader>gu', group = '[G]it Toggles' },
+      { '<leader>gh', group = '[G]it [H]unks' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       { '<leader>r', group = '[R]efactor' },
       { '<leader>s', group = '[S]earch...' },

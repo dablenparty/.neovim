@@ -60,41 +60,6 @@ return {
         desc = '[R]ename [F]ile',
       },
       {
-        '<leader>gB',
-        function()
-          Snacks.gitbrowse()
-        end,
-        desc = 'Git Browse',
-      },
-      {
-        '<leader>gb',
-        function()
-          Snacks.git.blame_line()
-        end,
-        desc = 'Git Blame Line',
-      },
-      {
-        '<leader>gf',
-        function()
-          Snacks.lazygit.log_file()
-        end,
-        desc = 'Lazygit Current File History',
-      },
-      {
-        '<leader>lg',
-        function()
-          Snacks.lazygit()
-        end,
-        desc = 'Lazygit',
-      },
-      {
-        '<leader>gl',
-        function()
-          Snacks.lazygit.log()
-        end,
-        desc = 'Lazygit Log (cwd)',
-      },
-      {
         '<leader>un',
         function()
           Snacks.notifier.hide()
@@ -177,53 +142,53 @@ return {
       },
       -- git
       {
-        '<leader>gb',
+        '<leader>gB',
         function()
-          Snacks.picker.git_branches()
+          Snacks.gitbrowse()
         end,
-        desc = 'Git Branches',
-      },
-      {
-        '<leader>gl',
-        function()
-          Snacks.picker.git_log()
-        end,
-        desc = 'Git Log',
-      },
-      {
-        '<leader>gL',
-        function()
-          Snacks.picker.git_log_line()
-        end,
-        desc = 'Git Log Line',
-      },
-      {
-        '<leader>gs',
-        function()
-          Snacks.picker.git_status()
-        end,
-        desc = 'Git Status',
-      },
-      {
-        '<leader>gS',
-        function()
-          Snacks.picker.git_stash()
-        end,
-        desc = 'Git Stash',
-      },
-      {
-        '<leader>gd',
-        function()
-          Snacks.picker.git_diff()
-        end,
-        desc = 'Git Diff (Hunks)',
+        desc = '[G]it [B]rowse',
       },
       {
         '<leader>gf',
         function()
           Snacks.picker.git_log_file()
         end,
-        desc = 'Git Log File',
+        desc = '[G]it Log [F]ile',
+      },
+      {
+        '<leader>gl',
+        function()
+          Snacks.picker.git_log()
+        end,
+        desc = '[G]it [L]og',
+      },
+      {
+        '<leader>gL',
+        function()
+          Snacks.picker.git_log_line()
+        end,
+        desc = '[G]it Log [L]ine',
+      },
+      {
+        '<leader>lf',
+        function()
+          Snacks.lazygit.log_file()
+        end,
+        desc = '[L]azygit Current [F]ile History',
+      },
+      {
+        '<leader>lg',
+        function()
+          Snacks.lazygit()
+        end,
+        desc = 'Lazygit',
+      },
+      {
+        '<leader>ll',
+        function()
+          Snacks.lazygit.log()
+        end,
+        desc = '[L]azygit [L]og (cwd)',
       },
       -- Grep
       {

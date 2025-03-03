@@ -32,6 +32,6 @@ return {
     set_key('#', [[#<Cmd>lua require('hlslens').start()<CR>]], 'Search backwrad for the nearest word')
     set_key('g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], 'Goto next occurence of nearest word')
     set_key('g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], 'Goto previous occurence of nearest word')
-    set_key('<Leader>l', '<Cmd>noh<CR>', 'Disable search highlights')
+    set_key('<Leader>h', '<Cmd>noh<CR>', 'Disable search highlights')
   end,
 }
