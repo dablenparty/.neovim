@@ -408,22 +408,45 @@ return {
         end,
       })
 
+      -- Enable LSP-related keybinds and autocommands
       vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('snacks-lsp-attach', { clear = true }),
         callback = function(event)
+          ---@param keys string
+          ---@param func function
+          ---@param opts vim.keymap.set.Opts | { mode?: string|string[] }
           local function set_key(keys, func, opts)
             opts = opts or {}
-            vim.tbl_deep_extend('keep', opts, { buffer = event.buf })
             opts.desc = 'LSP: ' .. opts.desc
-            vim.keymap.set('n', keys, func, opts)
+            vim.tbl_extend('keep', opts, { buffer = event.buf })
+
+            local mode = opts.mode or 'n'
+            -- `mode` is not a valid keymap opt, remove it
+            opts.mode = nil
+
+            vim.keymap.set(mode, keys, func, opts)
           end
 
           set_key('gd', Snacks.picker.lsp_definitions, { desc = '[G]oto [D]efinition' })
+          -- WARN: This is DECLARATION, not DEFINITION
+          --  For example, in C this would take you to the header.
           set_key('gD', Snacks.picker.lsp_declarations, { desc = '[G]oto [D]eclaration' })
           set_key('gr', Snacks.picker.lsp_references, { nowait = true, desc = '[G]oto [R]eferences' })
           set_key('gI', Snacks.picker.lsp_implementations, { desc = '[G]oto [I]mplementation' })
           set_key('gy', Snacks.picker.lsp_type_definitions, { desc = '[G]oto T[y]pe Definition' })
           set_key('<leader>ss', Snacks.picker.lsp_symbols, { desc = 'LSP [S]ymbols' })
           set_key('<leader>sS', Snacks.picker.lsp_workspace_symbols, { desc = 'LSP Workspace [S]ymbols' })
+          set_key('<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[n]ame Symbol' })
+          set_key('<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction', mode = { 'n', 'x' } })
+
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          -- The following code creates a keymap to toggle inlay hints in your
+          -- code, if the language server you are using supports them
+          --
+          -- This may be unwanted, since they displace some of your code
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            Snacks.toggle.inlay_hints():map '<leader>uh'
+          end
         end,
       })
     end,
