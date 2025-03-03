@@ -111,6 +111,21 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 require 'config.lazy'
 
+-- Fix docker compose files being read as regular yaml
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  pattern = { 'docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml' },
+  command = 'set filetype=yaml.docker-compose',
+})
+
+-- Change diagnostic symbols in the sign column (gutter)
+if vim.g.have_nerd_font then
+  local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
+  local diagnostic_signs = {}
+  for type, icon in pairs(signs) do
+    diagnostic_signs[vim.diagnostic.severity[type]] = icon
+  end
+  vim.diagnostic.config { signs = { text = diagnostic_signs } }
+end
 vim.keymap.set('n', '<leader>lz', '<CMD>Lazy<cr>', { desc = 'Open Lazy Plugin Manager' })
 
 -- NOTE: set colorscheme after loading lazy
