@@ -21,11 +21,11 @@ return {
           set_key('x', 'K', '<cmd>RustLsp hover range<CR>', 'Hover Menu')
 
           -- useful diagnostic binds
-          set_key('n', '<leader>xd', '<cmd>RustLsp renderDiagnostic current<CR>', 'Render [D]iagnostic')
-          set_key('n', '<leader>xD', '<cmd>RustLsp renderDiagnostic cycle<CR>', 'Render Next [D]iagnostic')
-          set_key('n', '<leader>xe', '<cmd>RustLsp explainError current<CR>', 'E[x]plain [E]rror on line')
-          set_key('n', '<leader>xE', '<cmd>RustLsp explainError cycle<CR>', 'E[x]plain Next [E]rror')
-          set_key('n', '<leader>xr', '<cmd>RustLsp relatedDiagnostics<CR>', '[R]elated Diagnostics')
+          set_key('n', '<leader>dx', '<cmd>RustLsp renderDiagnostic current<CR>', 'Render [D]iagnostic')
+          set_key('n', '<leader>dX', '<cmd>RustLsp renderDiagnostic cycle<CR>', 'Render Next [D]iagnostic')
+          set_key('n', '<leader>de', '<cmd>RustLsp explainError current<CR>', 'E[x]plain [E]rror on line')
+          set_key('n', '<leader>dE', '<cmd>RustLsp explainError cycle<CR>', 'E[x]plain Next [E]rror')
+          set_key('n', '<leader>dr', '<cmd>RustLsp relatedDiagnostics<CR>', '[R]elated Diagnostics')
 
           -- misc
           set_key('n', 'gx', '<cmd>RustLsp openDocs<CR>', 'Open docs.rs for the symbol under the cursor.')
