@@ -31,8 +31,12 @@ return {
     -- provides snippets for the snippet source
     dependencies = 'rafamadriz/friendly-snippets',
 
-    -- build from source with Rust nightly
-    build = 'rustup run nightly cargo build --release',
+    -- Build from source with Rust nightly
+    build = 'cargo +nightly build --release',
+    -- The +toolchain syntax requires that cargo is installed with rustup.
+    -- Therefore, if you get build errors, make sure you're using the
+    -- right `cargo` binary. This is especially important if you use Homebrew
+    -- as it will always take precedence.
 
     event = { 'InsertEnter', 'LspAttach' },
     lazy = true,
