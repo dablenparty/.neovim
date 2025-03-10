@@ -4,7 +4,6 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
-  -- this plugin has a HEAVYY startup
   lazy = true,
   -- It supports more, but these are the ones I use
   ft = {
@@ -18,37 +17,29 @@ return {
     'python',
     'java',
   },
-  opts = {},
-  config = function()
-    -- NOTE: do not replace this with a `keys` table in the plugin spec
+  opts = {
+    show_success_message = true,
+  },
+  config = function(opts, _)
+    opts = opts or {}
+    require('refactoring').setup(opts)
+
+    -- WARN: do not replace this with a `keys` table in the plugin spec
     -- See crates.lua for more
 
-    vim.keymap.set('x', '<leader>rf', function()
-      require('refactoring').refactor 'Extract Function'
-    end, { desc = 'Extract [F]unction' })
-    vim.keymap.set('x', '<leader>rF', function()
-      require('refactoring').refactor 'Extract Function To File'
-    end, { desc = 'Extract Function to [F]ile' })
-    -- Extract function supports only visual mode
-    vim.keymap.set('x', '<leader>rv', function()
-      require('refactoring').refactor 'Extract Variable'
-    end, { desc = 'Extract [V]ariable' })
-    -- Extract variable supports only visual mode
-    vim.keymap.set('n', '<leader>rI', function()
-      require('refactoring').refactor 'Inline Function'
-    end, { desc = '[I]nline  Function' })
-    -- Inline func supports only normal
-    vim.keymap.set({ 'n', 'x' }, '<leader>ri', function()
-      require('refactoring').refactor 'Inline Variable'
-    end, { desc = '[I]nline Variable' })
-    -- Inline var supports both normal and visual mode
+    -- NOTE: the Ex commands are preferred to the Lua API because they allow a live-preview of changes
+    -- while the Lua API does not ATW.
+    vim.keymap.set('x', '<leader>rf', ':Refactor extract ', { desc = 'Extract [F]unction' })
+    vim.keymap.set('x', '<leader>rF', ':Refactor extract_to_file ', { desc = 'Extract Function to [F]ile' })
+    vim.keymap.set('x', '<leader>rv', ':Refactor extract_var ', { desc = 'Extract [V]ariable' })
+    vim.keymap.set('n', '<leader>rI', ':Refactor inline_func ', { desc = '[I]nline  Function' })
+    vim.keymap.set({ 'n', 'x' }, '<leader>ri', ':Refactor inline_var', { desc = '[I]nline Variable' })
+    vim.keymap.set('n', '<leader>rb', ':Refactor extract_block', { desc = 'Extract [B]lock' })
+    vim.keymap.set('n', '<leader>rB', ':Refactor extract_block_to_file', { desc = 'Extract [B]lock to File' })
 
-    vim.keymap.set('n', '<leader>rb', function()
-      require('refactoring').refactor 'Extract Block'
-    end, { desc = 'Extract [B]lock' })
-    vim.keymap.set('n', '<leader>rB', function()
-      require('refactoring').refactor 'Extract Block To File'
-    end, { desc = 'Extract [B]lock to File' })
-    -- Extract block supports only normal mode
+    -- Set `prefer_ex_cmd = false` to use builtin `vim.ui.input` (not working ATW)
+    vim.keymap.set({ 'n', 'x' }, '<leader>rr', function()
+      require('refactoring').select_refactor { prefer_ex_cmd = true }
+    end, { desc = '[R]efactor He[r]e...' })
   end,
 }
