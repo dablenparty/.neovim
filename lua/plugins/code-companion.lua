@@ -27,11 +27,13 @@ return {
       '<leader>aa',
       '<cmd>CodeCompanionActions<cr>',
       desc = 'AI [A]ctions',
+      mode = { 'n', 'x' },
     },
     {
       '<leader>ac',
       '<cmd>CodeCompanionChat Toggle<cr>',
       desc = 'Toggle AI [C]hat',
+      mode = { 'n', 'x' },
     },
   },
   opts = {
