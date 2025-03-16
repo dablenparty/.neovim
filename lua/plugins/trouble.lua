@@ -40,7 +40,7 @@ return {
           if string.find(err, 'E553') then
             vim.cmd [[clast]]
           else
-            vim.notify(err, vim.log.levels.WARN)
+            Snacks.notify.warn(err)
           end
         end
       end,
@@ -63,7 +63,7 @@ return {
           if string.find(err, 'E553') then
             vim.cmd [[cfirst]]
           else
-            vim.notify(err, vim.log.levels.WARN)
+            Snacks.notify.warn(err)
           end
         end
       end,
