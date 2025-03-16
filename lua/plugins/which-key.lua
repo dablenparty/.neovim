@@ -61,6 +61,7 @@ return {
     },
 
     spec = {
+      { '<leader>a', group = '[A]I', mode = { 'n', 'x' } },
       { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
       { '<leader>d', group = '[D]iagnostics' },
       { '<leader>f', group = '[F]ind...' },

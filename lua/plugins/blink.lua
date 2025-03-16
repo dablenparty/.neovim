@@ -69,6 +69,9 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
+        per_filetype = {
+          codecompanion = { 'codecompanion' },
+        },
         default = function()
           local default_sources = { 'lsp', 'path', 'snippets', 'buffer' }
 
