@@ -50,12 +50,6 @@ return {
     { 'j-hui/fidget.nvim', opts = {} },
   },
   opts = {
-    setup = {
-      rust_analyzer = function()
-        -- I compile rust_analyzer myself
-        return true
-      end,
-    },
     diagnostics = {
       underline = true,
       update_in_insert = false,
@@ -69,13 +63,14 @@ return {
       },
       severity_sort = true,
     },
-    automatic_installation = true,
+    automatic_installation = false,
     ensure_installed = {},
     handlers = {
       function(server_name)
         local server = servers[server_name] or {}
         require('lspconfig')[server_name].setup(server)
       end,
+      ['rust_analyzer'] = function() end,
     },
   },
 }
