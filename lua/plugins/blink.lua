@@ -73,6 +73,8 @@ return {
           codecompanion = { 'codecompanion' },
         },
         default = function()
+          -- Default list of enabled providers defined so that you can extend it
+          -- elsewhere in your config, without redefining it, due to `opts_extend`
           local default_sources = { 'lsp', 'path', 'snippets', 'buffer' }
 
           -- Remove LSP sources when editing comments.
