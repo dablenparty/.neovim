@@ -72,6 +72,7 @@ return {
         per_filetype = {
           codecompanion = { 'codecompanion' },
         },
+
         default = function()
           -- Default list of enabled providers defined so that you can extend it
           -- elsewhere in your config, without redefining it, due to `opts_extend`
@@ -101,12 +102,18 @@ return {
 
           return sources
         end,
+
         providers = {
           lazydev = {
             name = 'LazyDev',
             module = 'lazydev.integrations.blink',
             -- make lazydev completions top priority (see `:h blink.cmp`)
             score_offset = 100,
+          },
+          path = {
+            opts = {
+              show_hidden_files_by_default = true,
+            },
           },
         },
       },
