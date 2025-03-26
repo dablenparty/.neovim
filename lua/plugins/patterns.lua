@@ -3,7 +3,7 @@ return {
   cmd = { 'Patterns' },
   keys = {
     {
-      '<C-k>',
+      '<C-x>',
       '<cmd>Patterns hover<cr>',
       desc = 'Show pattern hover',
     },
