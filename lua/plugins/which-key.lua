@@ -1,6 +1,7 @@
 -- Useful plugin to show you pending keybinds.
 return {
   'folke/which-key.nvim',
+  dependencies = { 'echasnovski/mini.icons' },
   event = 'VimEnter',
   keys = {
     {
