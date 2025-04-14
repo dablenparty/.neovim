@@ -3,7 +3,7 @@
 My custom Neovim config, written from scratch.
 
 > [!IMPORTANT]
-> Currently, neovim `v0.11` is still nightly. Make sure to install the latest commit!
+> neovim `v0.11` is no longer nightly! You can install the latest dev version if you'd like, but **it is no longer required**.
 
 <details>
 
@@ -41,7 +41,7 @@ paru -S neovim-git
 - `gcc`
 - NodeJS, NPM, and Yarn (use a version manager like `fnm`)
   - `npm i -g yarn`
-  - Although very few of them actually specify this, NPM is needed to install most language servers.
+  - Although very few of them actually specify this, NPM is needed to install ~~most~~ some language servers.
 - [`ripgrep`](https://github.com/BurntSushi/ripgrep#installation)
 - [`rustup`](https://rustup.rs/) with nightly toolchain
   - `rustup toolchain install nightly`
