@@ -32,7 +32,7 @@ return {
     dependencies = 'rafamadriz/friendly-snippets',
 
     -- Build from source with Rust nightly
-    build = 'rustup run nightly cargo build',
+    build = 'rustup run nightly cargo build --release',
 
     event = { 'InsertEnter', 'LspAttach' },
     lazy = true,
