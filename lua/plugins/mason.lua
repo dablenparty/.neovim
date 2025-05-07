@@ -63,14 +63,10 @@ return {
       },
       severity_sort = true,
     },
-    automatic_installation = false,
-    ensure_installed = {},
-    handlers = {
-      function(server_name)
-        local server = servers[server_name] or {}
-        require('lspconfig')[server_name].setup(server)
-      end,
-      ['rust_analyzer'] = function() end,
+    automatic_enable = {
+      -- handled by rustaceanvim
+      exclude = { 'rust_analyzer' },
     },
+    ensure_installed = {},
   },
 }
