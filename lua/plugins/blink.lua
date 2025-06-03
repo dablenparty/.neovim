@@ -60,42 +60,15 @@ return {
 
       completion = { documentation = { auto_show = false } },
 
-      -- Default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
         per_filetype = {
           codecompanion = { 'codecompanion' },
+          lua = { inherit_defaults = true, 'lazydev' },
         },
 
-        default = function()
-          -- Default list of enabled providers defined so that you can extend it
-          -- elsewhere in your config, without redefining it, due to `opts_extend`
-          local default_sources = { 'lsp', 'path', 'snippets', 'buffer' }
-
-          -- Remove LSP sources when editing comments.
-          -- Since some langauges have multiple comment types (and "comment_content" is its own node),
-          -- simply checking if the node type has the word "comment" works better for me.
-          local success, node = pcall(vim.treesitter.get_node)
-          if success and node and node:type():find 'comment' then
-            default_sources = { 'path', 'snippets', 'buffer' }
-          end
-
-          -- effectively a set, see: https://www.lua.org/pil/11.5.html
-          local source_to_ft = {
-            -- TODO: dadbod for SQL
-            -- dadbod = { sql = true, mysql = true, plsql = true },
-            lazydev = { lua = true },
-          }
-
-          local sources = default_sources
-          for src, fts in pairs(source_to_ft) do
-            if fts[vim.bo.filetype] then
-              vim.list_extend(sources, { src })
-            end
-          end
-
-          return sources
-        end,
+        -- Default list of enabled providers defined so that you can extend it
+        -- elsewhere in your config, without redefining it, due to `opts_extend`
+        default = { 'lsp', 'buffer', 'snippets', 'path' },
 
         providers = {
           lazydev = {
