@@ -128,5 +128,8 @@ if vim.g.have_nerd_font then
 end
 vim.keymap.set('n', '<leader>lz', '<CMD>Lazy<cr>', { desc = 'Open Lazy Plugin Manager' })
 
+-- enable inline diagnostics
+vim.diagnostic.config { virtual_text = true }
+
 -- NOTE: set colorscheme after loading lazy
 vim.cmd 'colorscheme everforest'
