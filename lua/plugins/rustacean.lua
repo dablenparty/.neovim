@@ -27,9 +27,17 @@ return {
           set_key('n', '<leader>dE', '<cmd>RustLsp explainError cycle<CR>', 'E[x]plain Next [E]rror')
           set_key('n', '<leader>dr', '<cmd>RustLsp relatedDiagnostics<CR>', '[R]elated Diagnostics')
 
+          -- testing binds
+          set_key('n', '<leader>tt', '<cmd>RustLsp! testables<CR>', 'Re-run last testable')
+          set_key('n', '<leader>tT', '<cmd>RustLsp testables<CR>', 'Show testables')
+
           -- misc
           set_key('n', 'gx', '<cmd>RustLsp openDocs<CR>', 'Open docs.rs for the symbol under the cursor.')
         end,
+      },
+      tools = {
+        -- required to show test results as diagnostics (kinda buggy atm)
+        test_executor = 'background',
       },
     }
   end,
