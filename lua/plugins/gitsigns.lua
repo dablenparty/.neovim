@@ -19,6 +19,7 @@ return {
 
       set_key('n', '<leader>ghp', gitsigns.preview_hunk, { desc = '[g]it [H]unk [P]review' })
       set_key('n', '<leader>ghi', gitsigns.preview_hunk_inline, { desc = '[g]it [H]unk H[i]ghlight' })
+      set_key({ 'n', 'v' }, '<leader>ghs', gitsigns.stage_hunk, { desc = '[g]it [H]unk [S]tage' })
 
       set_key('n', '<leader>gb', function()
         gitsigns.blame_line { full = true }
