@@ -103,7 +103,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
   end,
@@ -114,6 +114,7 @@ require 'config.lazy'
 -- Fix docker compose files being read as regular yaml
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   pattern = { 'docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml' },
+  group = vim.api.nvim_create_augroup('filetype-fixes', { clear = true }),
   command = 'set filetype=yaml.docker-compose',
 })
 
