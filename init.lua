@@ -117,6 +117,14 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   command = 'set filetype=yaml.docker-compose',
 })
 
+-- Disable status column in manpages because it causes hard wrapping
+-- and setting $MANWIDTH does not work
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { 'man' },
+  group = vim.api.nvim_create_augroup('filetype-fixes', { clear = true }),
+  command = 'set statuscolumn=',
+})
+
 -- Change diagnostic symbols in the sign column (gutter)
 if vim.g.have_nerd_font then
   local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
