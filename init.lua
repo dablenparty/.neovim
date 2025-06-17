@@ -95,36 +95,8 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})
-
+require 'config.autocmds'
 require 'config.lazy'
-
--- Fix docker compose files being read as regular yaml
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  pattern = { 'docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml' },
-  group = vim.api.nvim_create_augroup('filetype-fixes', { clear = true }),
-  command = 'set filetype=yaml.docker-compose',
-})
-
--- Disable status column in manpages because it causes hard wrapping
--- and setting $MANWIDTH does not work
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  pattern = { 'man' },
-  group = vim.api.nvim_create_augroup('filetype-fixes', { clear = true }),
-  command = 'set statuscolumn=',
-})
 
 -- Change diagnostic symbols in the sign column (gutter)
 if vim.g.have_nerd_font then
