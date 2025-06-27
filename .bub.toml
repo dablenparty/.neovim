@@ -1,0 +1,10 @@
+target = "~/.config/nvim"
+exclude = [
+    "^(README|LICEN[CS]E|COPYING).*$",
+    '\.unboxrc.*$',
+    '^\.git.*$',
+    '\.bub\.toml$',
+]
+include = []
+link_root = true
+link_type = "absolute"
