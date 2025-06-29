@@ -3,7 +3,6 @@ return {
     'OXY2DEV/markview.nvim',
     dependencies = {
       'saghen/blink.cmp',
-      'nvim-treesitter/nvim-treesitter',
     },
     lazy = false,
     opts = function(_, opts)
