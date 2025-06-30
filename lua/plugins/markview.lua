@@ -10,6 +10,9 @@ return {
       local presets = require 'markview.presets'
 
       return {
+        experimental = {
+          check_rtp = false,
+        },
         markdown = {
           headings = presets.headings.glow,
           horizontal_rules = presets.horizontal_rules.thick,
