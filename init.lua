@@ -95,3 +95,6 @@ vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 -- start with all folds open
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'expr'
+
+-- SECTION: Imports
+require 'keymaps'
