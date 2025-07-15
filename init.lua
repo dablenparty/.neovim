@@ -1,116 +1,97 @@
--- NOTE: Disables netrw (default nvim file explorer)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
+-- SECTION: Visuals
+-- NOTE: colorscheme must come before highlights
+vim.cmd.colorscheme('unokai')
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'none' })
 vim.g.have_nerd_font = true
-
--- [[ Setting options ]]
--- See `:help vim.opt`
---  For more options, you can see `:help option-list`
-
--- Make line numbers default
+-- TODO: auto cmdheight
+vim.opt.cmdheight = 1
+-- highlight column 90
+vim.opt.colorcolumn = '90'
+-- don't hide markup text
+vim.opt.concealcursor = ''
+vim.opt.conceallevel = 1
+vim.opt.cursorline = true
 vim.opt.number = true
+-- popup menu transparency
+vim.opt.pumblend = 8
+vim.opt.pumheight = 8
+-- TODO: auto-relative numbers
 vim.opt.relativenumber = true
-
--- Enable mouse mode
-vim.opt.mouse = 'a'
-
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
-
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
+-- highlight matching bracket(s)
+vim.opt.showmatch = true
 vim.opt.signcolumn = 'yes'
+-- enable 24-bit color
+vim.opt.termguicolors = true
+-- floating window transparency
+vim.opt.winblend = 0
 
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 444
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
+-- SECTION: Basic Text Processing
+vim.opt.autoindent = true
+-- maintain indentation for wrapped text
+vim.opt.breakindent = true
+-- use spaces instead of tabs
+vim.opt.expandtab = true
+-- controls how whitespace is displayed
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.scrolloff = 8
+vim.opt.shiftwidth = 2
+vim.opt.sidescrolloff = 8
+vim.opt.smartindent = true
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2
+vim.opt.wrap = true
 
--- Preview substitutions live, as you type!
+-- SECTION: Searching
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+-- show live substitutions in the preview window
 vim.opt.inccommand = 'split'
+-- show matches while typing
+vim.opt.incsearch = true
+vim.opt.smartcase = true
 
--- Show which line your cursor is on
-vim.opt.cursorline = true
+-- SECTION: Autocompletion
+vim.opt.completeopt = 'fuzzy,menuone,noinsert,noselect,popup'
 
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+-- SECTION: File Handling
+vim.opt.autoread = true
+vim.opt.autowrite = false
+-- disable "backup" files
+vim.opt.backup = false
+vim.opt.swapfile = false
+-- mapped sequence timeout
+vim.opt.timeoutlen = 450
+-- key code sequence timeout
+vim.opt.ttimeoutlen = 0
+-- persist undo history to a state file
+vim.opt.undofile = true
+-- update faster for faster autocomplete
+vim.opt.updatetime = 250
+-- don't write "backup" files
+vim.opt.writebackup = false
 
--- [[ Basic Keymaps ]]
+-- SECTION: General Behavior
+vim.opt.backspace = 'indent,eol,start'
+-- yank text to registers "+" and "*", and to system clipboard
+vim.opt.clipboard:append('unnamedplus')
+vim.opt.errorbells = false
+vim.opt.hidden = true
+-- treat "-" as part of a keyword (e.g. kebab-case becomes one keyword)
+vim.opt.iskeyword:append('-')
+-- allow buffers to be modified
+vim.opt.modifiable = true
+vim.opt.mouse = 'a'
+-- include subdirs in path search
+vim.opt.path:append('**')
+vim.opt.selection = 'exclusive'
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
--- NOTE: This won't work in all terminal emulators/tmux/etc,
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- TIP: Disable arrow keys in normal mode
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
-require 'config.autocmds'
-require 'config.lazy'
-
--- Change diagnostic symbols in the sign column (gutter)
-if vim.g.have_nerd_font then
-  local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
-  local diagnostic_signs = {}
-  for type, icon in pairs(signs) do
-    diagnostic_signs[vim.diagnostic.severity[type]] = icon
-  end
-  vim.diagnostic.config { signs = { text = diagnostic_signs } }
-end
-vim.keymap.set('n', '<leader>lz', '<CMD>Lazy<cr>', { desc = 'Open Lazy Plugin Manager' })
-
--- enable inline diagnostics
-vim.diagnostic.config { virtual_text = true }
-
--- NOTE: set colorscheme after loading lazy
-vim.cmd 'colorscheme everforest'
+-- SECTION: Folding
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- start with all folds open
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'expr'
