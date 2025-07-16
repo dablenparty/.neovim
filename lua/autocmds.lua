@@ -1,10 +1,36 @@
+-- GROUP: Default
+-- Return to last edit position when opening files
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+})
+
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})
+
+-- GROUP: Filetype Fixes
+local file_fixes_augroup = vim.api.nvim_create_augroup('filetype-fixes', { clear = true })
+
 -- Fix docker compose files being read as regular yaml
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   -- equivalent regex:
   -- (docker-)?compose.ya?ml
   -- see `:help pattern`
   pattern = { '{docker-}\\=compose.ya\\=ml' },
-  group = vim.api.nvim_create_augroup('filetype-fixes', { clear = false }),
+  group = file_fixes_augroup,
   command = 'set filetype=yaml.docker-compose',
 })
 
@@ -12,10 +38,35 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 -- $MANWIDTH does not work
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   pattern = { 'man' },
-  group = vim.api.nvim_create_augroup('filetype-fixes', { clear = false }),
+  group = file_fixes_augroup,
   command = 'set statuscolumn=',
 })
 
+-- GROUP: Terminal Enhancements
+local term_augroup = vim.api.nvim_create_augroup('term-changes', { clear = true })
+
+-- Disable line numbers in terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = term_augroup,
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = 'no'
+    vim.opt_local.statuscolumn = ''
+  end,
+})
+
+-- Auto-close terminal when process exits
+vim.api.nvim_create_autocmd("TermClose", {
+  group = term_augroup,
+  callback = function()
+    if vim.v.event.status == 0 then
+      vim.api.nvim_buf_delete(0, {})
+    end
+  end,
+})
+
+-- GROUP: Language Server Protocol (LSP)
 -- The following two autocommands are used to highlight references of the word under your
 -- cursor when your cursor rests there for a little while. See `:help CursorHold` for
 -- information about when this is executed When you move your cursor, the highlights will
@@ -49,17 +100,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})
-
+-- GROUP: Status, Sign, and Line Number Columns
 -- Modified from: https://github.com/sitiom/nvim-numbertoggle/blob/main/plugin/numbertoggle.lua
 -- Show absolute line numbers in Insert mode and when the window loses focus
 local relative_line_nums_augroup = vim.api.nvim_create_augroup('relative-line-numbers', { clear = true })
