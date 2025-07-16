@@ -100,4 +100,5 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'expr'
 
 -- SECTION: Imports
+require 'autocmds'
 require 'keymaps'
