@@ -1,3 +1,6 @@
+-- NOTE: import all utils before doing anything else
+require 'utils'
+
 -- SECTION: Visuals
 -- NOTE: colorscheme must come before highlights
 vim.cmd.colorscheme('unokai')
