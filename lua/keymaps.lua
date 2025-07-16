@@ -22,6 +22,16 @@ set_global_keymap('<C-u>', '<C-u>zz', 'Half page up (centered)')
 
 -- Paste without yanking in visual mode
 set_global_keymap('p', 'P', 'Paste without yanking', { mode = 'x' })
+set_global_keymap('y%', function()
+  local clipboard = vim.opt.clipboard:get()
+  local register = ''
+  if vim.tbl_contains(clipboard, 'unnamedplus') then
+    register = '+'
+  elseif vim.tbl_contains(clipboard, 'unnamed') then
+    register = '*'
+  end
+  return string.format(':%%y%s<CR>', register)
+end, 'Yank buffer', { expr = true })
 
 -- navigate windows easier
 set_global_keymap("<C-h>", "<C-w>h", "Move to left window")
