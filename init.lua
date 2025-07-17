@@ -58,6 +58,9 @@ vim.opt.smartcase = true
 
 -- SECTION: Autocompletion
 vim.opt.completeopt = 'fuzzy,menuone,noinsert,noselect,popup'
+vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.jar" })
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
 
 -- SECTION: File Handling
 vim.opt.autoread = true
