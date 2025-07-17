@@ -105,3 +105,4 @@ vim.opt.foldmethod = 'expr'
 -- SECTION: Imports
 require 'autocmds'
 require 'keymaps'
+require 'config.lazy'
