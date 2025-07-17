@@ -1,6 +1,3 @@
--- NOTE: import all utils before doing anything else
-require 'utils'
-
 -- SECTION: Visuals
 -- NOTE: colorscheme must come before highlights
 vim.cmd.colorscheme('unokai')
@@ -103,6 +100,7 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'expr'
 
 -- SECTION: Imports
+require 'utils'
 require 'autocmds'
 require 'keymaps'
 require 'config.lazy'
