@@ -24,6 +24,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- GROUP: Filetype Fixes
 local file_fixes_augroup = vim.api.nvim_create_augroup('filetype-fixes', { clear = true })
 
+-- Create directories when saving files
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = augroup,
+  callback = function()
+    -- expand the autocommand file path and take the head (dirname)
+    local dir = vim.fn.expand('<afile>:p:h')
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, 'p')
+    end
+  end,
+})
+
 -- Fix docker compose files being read as regular yaml
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   -- equivalent regex:
@@ -131,3 +143,13 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEn
   end,
 })
 
+-- GROUP: Window Functions
+local window_augroup = vim.api.nvim_create_augroup('window-funcs', { clear = true })
+
+-- Auto-resize splits when window is resized
+vim.api.nvim_create_autocmd("VimResized", {
+  group = window_augroup,
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
+})
