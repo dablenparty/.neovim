@@ -12,6 +12,8 @@ local servers = {
     settings = {
       Lua = {
         diagnostics = {
+          -- disable "undefined global vim"
+          -- see lazydev.nvim for a better fix
           globals = { 'vim' },
         },
         completion = {
