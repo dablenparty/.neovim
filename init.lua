@@ -106,3 +106,5 @@ vim.opt.foldmethod = 'expr'
 require 'autocmds'
 require 'keymaps'
 require 'config.lazy'
+
+vim.cmd.colorscheme('everforest')
