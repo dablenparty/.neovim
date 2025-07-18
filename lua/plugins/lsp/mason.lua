@@ -12,7 +12,7 @@ local servers = {
     settings = {
       Lua = {
         diagnostics = {
-          -- disable "undefined global vim"
+          -- disable 'undefined global vim'
           -- see lazydev.nvim for a better fix
           globals = { 'vim' },
         },
@@ -31,21 +31,23 @@ for server, conf in pairs(servers) do
 end
 
 return {
-  "mason-org/mason-lspconfig.nvim",
+  'mason-org/mason-lspconfig.nvim',
   dependencies = {
     {
-      "mason-org/mason.nvim",
+      'mason-org/mason.nvim',
       opts = {
         ui = {
           icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
+            package_installed = '✓',
+            package_pending = '➜',
+            package_uninstalled = '✗'
           }
         }
       }
     },
-    "neovim/nvim-lspconfig",
+    'neovim/nvim-lspconfig',
+    -- status indicator for LSP's
+    { 'j-hui/fidget.nvim', opts = {} }
   },
   opts = {
     automatic_enable = {
