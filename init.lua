@@ -1,5 +1,5 @@
 -- SECTION: Visuals
--- NOTE: colorscheme must come before highlights
+-- NOTE: default colorscheme must come before highlights
 vim.cmd.colorscheme('unokai')
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
@@ -17,7 +17,6 @@ vim.opt.number = true
 -- popup menu transparency
 vim.opt.pumblend = 8
 vim.opt.pumheight = 8
--- TODO: auto-relative numbers
 vim.opt.relativenumber = true
 -- highlight matching bracket(s)
 vim.opt.showmatch = true
@@ -103,6 +102,7 @@ vim.opt.foldmethod = 'expr'
 require 'utils'
 require 'autocmds'
 require 'keymaps'
+-- imports plugins and themes
 require 'config.lazy'
 
 vim.cmd.colorscheme('everforest')
