@@ -37,21 +37,21 @@ return {
         function()
           Snacks.scratch.select()
         end,
-        desc = 'Select Scratch Buffer',
+        desc = 'Select [S]cratch Buffer',
       },
       {
         '<leader>n',
         function()
           Snacks.notifier.show_history()
         end,
-        desc = 'Notification History',
+        desc = '[N]otification History',
       },
       {
         '<leader>un',
         function()
           Snacks.notifier.hide()
         end,
-        desc = 'Dismiss All Notifications',
+        desc = 'Dismiss All [N]otifications',
       },
       {
         '<c-/>',
@@ -63,13 +63,6 @@ return {
 
       --! Picker Binds
       -- Top Pickers & Explorer
-      {
-        '<leader>:',
-        function()
-          Snacks.picker.command_history()
-        end,
-        desc = 'Command History',
-      },
       -- find
       {
         '<leader>fs',
@@ -121,7 +114,7 @@ return {
         end,
         desc = '[L]azygit [L]og (cwd)',
       },
-      -- Grep
+      -- Grep/Search
       {
         '<leader>/',
         function()
@@ -134,14 +127,14 @@ return {
         function()
           Snacks.picker.grep()
         end,
-        desc = 'Grep',
+        desc = '[G]rep',
       },
       {
         '<leader>sw',
         function()
           Snacks.picker.grep_word()
         end,
-        desc = 'Visual selection or word',
+        desc = 'Grep [W]ord',
         mode = { 'n', 'x' },
       },
       -- search
@@ -150,84 +143,91 @@ return {
         function()
           Snacks.picker.commands()
         end,
-        desc = 'Commands',
+        desc = '[C]ommands',
+      },
+      {
+        '<leader>s:',
+        function()
+          Snacks.picker.command_history()
+        end,
+        desc = 'Command History',
       },
       {
         '<leader>sD',
         function()
           Snacks.picker.diagnostics()
         end,
-        desc = 'Diagnostics',
+        desc = '[D]iagnostics',
       },
       {
         '<leader>sd',
         function()
           Snacks.picker.diagnostics_buffer()
         end,
-        desc = 'Buffer Diagnostics',
+        desc = 'Buffer [D]iagnostics',
       },
       {
         '<leader>sf',
         function()
           Snacks.picker.files { hidden = true, follow = true }
         end,
-        desc = 'Search Files',
+        desc = '[S]earch [F]iles',
       },
       {
         '<leader>sh',
         function()
           Snacks.picker.help()
         end,
-        desc = 'Help Pages',
+        desc = '[H]elp Pages',
       },
       {
         '<leader>sk',
         function()
           Snacks.picker.keymaps()
         end,
-        desc = 'Keymaps',
+        desc = '[K]eymaps',
       },
       {
         '<leader>sl',
         function()
           Snacks.picker.loclist()
         end,
-        desc = 'Location List',
+        desc = '[L]ocation List',
       },
       {
         '<leader>sm',
         function()
           Snacks.picker.marks()
         end,
-        desc = 'Marks',
+        desc = '[M]arks',
       },
       {
         '<leader>sM',
         function()
           Snacks.picker.man()
         end,
-        desc = 'Man Pages',
+        desc = '[M]an Pages',
       },
       {
         '<leader>sp',
         function()
           Snacks.picker.lazy()
         end,
-        desc = 'Search for Lazy Plugin Spec',
+        desc = 'Search for Lazy [P]lugin Spec',
       },
       {
         '<leader>sq',
         function()
           Snacks.picker.qflist()
         end,
-        desc = 'Quickfix List',
+        desc = '[Q]uickfix List',
       },
       {
         '<leader>sR',
         function()
           Snacks.picker.resume()
         end,
-        desc = 'Resume',
+        desc = '[R]esume',
       },
       {
         '<leader>st',
@@ -241,14 +241,14 @@ return {
         function()
           Snacks.picker.undo()
         end,
-        desc = 'Undo History',
+        desc = '[U]ndo History',
       },
       {
         '<leader>sC',
         function()
           Snacks.picker.colorschemes()
         end,
-        desc = 'Colorschemes',
+        desc = '[C]olorschemes',
       },
     },
     init = function()
@@ -327,7 +327,7 @@ return {
         function()
           Snacks.picker.todo_comments()
         end,
-        desc = 'Todo',
+        desc = '[T]odo Comments',
       },
     },
   },
