@@ -61,4 +61,56 @@ M.set_global_keymap("<A-k>", ":m '<-2<CR>gv=gv", "Move selection up", { mode = '
 M.set_global_keymap("<Tab>", ">gv", "Indent right and reselect", { mode = "v" })
 M.set_global_keymap("<S-Tab>", "<gv", "Indent left and reselect", { mode = "v" })
 
+---Add/remove a character at the end of a line
+---@param char string
+local function toggle_char_at_eol(char)
+  local visual_modes = { ['v'] = true, ['V'] = true, [''] = true }
+  local mode = vim.api.nvim_get_mode().mode
+  local start_row, end_row
+
+  if visual_modes[mode] then
+    -- Using marks '< and '> is a little hacky because those marks are only set when
+    -- EXITING visual mode. So, to prevent changing modes, we instead explicitly fetch
+    -- the line numbers of both ends of the Visual area, one of which is conveniently the
+    -- cursor. See `:h getpos()` for more info.
+    local cursor_line = vim.fn.line('.') - 1
+    local visual_end_line = vim.fn.line('v') - 1
+    -- WARN: Because the cursor could be at the top OR bottom of the region, the
+    -- start/end rows must be checked before being assigned.
+    if cursor_line < visual_end_line then
+      start_row = cursor_line
+      end_row = visual_end_line
+    else
+      start_row = visual_end_line
+      end_row = cursor_line
+    end
+  else
+    start_row = vim.api.nvim_win_get_cursor(0)[1] - 1
+    end_row = start_row
+  end
+
+  local strict_indexing = true
+  local lines = vim.api.nvim_buf_get_lines(0, start_row, end_row + 1, strict_indexing)
+
+  for row = start_row, end_row do
+    -- local row = cursor_pos[1] - 1
+    local line = lines[(row - start_row) + 1]
+    local last_char = line:sub(#line, #line)
+    if last_char == char then
+      -- remove char
+      vim.api.nvim_buf_set_text(0, row, #line - 1, row, #line, {})
+    else
+      -- add char
+      vim.api.nvim_buf_set_text(0, row, #line, row, #line, { char })
+    end
+  end
+end
+
+M.set_global_keymap(';', function()
+  toggle_char_at_eol(';')
+end, 'Toggle semi-colon at EOL', { mode = { 'n', 'x' } })
+M.set_global_keymap(',', function()
+  toggle_char_at_eol(',')
+end, 'Toggle comma at EOL')
+
 return M
