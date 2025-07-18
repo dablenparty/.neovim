@@ -26,7 +26,7 @@ local file_fixes_augroup = vim.api.nvim_create_augroup('filetype-fixes', { clear
 
 -- Create directories when saving files
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = augroup,
+  group = file_fixes_augroup,
   callback = function()
     -- expand the autocommand file path and take the head (dirname)
     local dir = vim.fn.expand('<afile>:p:h')
