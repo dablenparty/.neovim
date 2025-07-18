@@ -1,32 +1,6 @@
 # .neovim
 
-My custom Neovim config, written from scratch.
-
-> [!IMPORTANT]
-> neovim `v0.11` is no longer nightly! You can install the latest dev version if you'd like, but **it is no longer required**.
-
-<details>
-
-<summary>Homebrew</summary>
-
-```bash
-brew install tree-sitter --HEAD
-brew install neovim --HEAD
-```
-
-</details>
-
-<details>
-
-<summary>AUR</summary>
-
-Install `neovim-git` from the AUR. For example, using `paru`:
-
-```bash
-paru -S neovim-git
-```
-
-</details>
+My custom Neovim config, written from scratch for `nvim 0.11`.
 
 ## Dependencies
 
