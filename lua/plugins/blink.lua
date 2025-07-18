@@ -1,5 +1,4 @@
-return
-{
+return {
   'saghen/blink.cmp',
   -- provides snippets for the snippet source
   dependencies = { 'rafamadriz/friendly-snippets' },
