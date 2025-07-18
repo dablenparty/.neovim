@@ -3,9 +3,9 @@ vim.g.maplocalleader = ' '
 
 M = {}
 
--- Set a global keymap. All args are passed directly to `vim.keymap.set()` except `opts`.
--- If `opts.desc` is defined, it is ovewritten by the positional `desc`. If `opts.mode`
--- is defined, it is removed from `opts` and used as the keymap mode.
+---Set a global keymap. All args are passed directly to `vim.keymap.set()` except `opts`.
+---If `opts.desc` is defined, it is ovewritten by the positional `desc`. If `opts.mode`
+---is defined, it is removed from `opts` and used as the keymap mode.
 ---@param lhs  string
 ---@param rhs  string | function
 ---@param desc string
@@ -17,7 +17,7 @@ M.set_global_keymap = function(lhs, rhs, desc, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-M.set_global_keymap('<Esc>', ':nohlsearch<CR>', 'Clear search highlights')
+M.set_global_keymap('<Esc>', ':nohlsearch<CR>', 'Clear search highlights', { silent = true })
 
 -- Center screen when jumping
 M.set_global_keymap('n', 'nzzzv', 'Next search result (centered)')
@@ -57,7 +57,7 @@ M.set_global_keymap("<A-k>", ":m .-2<CR>==", "Move line up")
 M.set_global_keymap("<A-j>", ":m '>+1<CR>gv=gv", "Move selection down", { mode = 'v' })
 M.set_global_keymap("<A-k>", ":m '<-2<CR>gv=gv", "Move selection up", { mode = 'v' })
 
--- VSCode indenting in visual mode
+-- VSCode-style indenting in visual mode
 M.set_global_keymap("<Tab>", ">gv", "Indent right and reselect", { mode = "v" })
 M.set_global_keymap("<S-Tab>", "<gv", "Indent left and reselect", { mode = "v" })
 
