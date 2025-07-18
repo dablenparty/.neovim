@@ -2,7 +2,6 @@ return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', { 'echasnovski/mini.icons', version = false, opts = {} } },
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     ft = { 'markdown', 'quarto', 'text', 'gitcommit' },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig

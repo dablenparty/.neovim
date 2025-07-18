@@ -1,4 +1,5 @@
 -- Formatting
+-- NOTE: Conform auto-installs formatters for you; no need for mason integration!
 return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
@@ -65,5 +66,5 @@ return {
         prepend_args = { '-i', '2' },
       },
     },
-  },
+  }
 }
