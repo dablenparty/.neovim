@@ -61,16 +61,18 @@ return {
     'echasnovski/mini.statusline',
     dependencies = { 'echasnovski/mini.icons', opts = {} },
     opts = function(_, opts)
-      local my_opts = {
-        use_icons = vim.g.have_nerd_font,
-      }
-      opts = vim.tbl_deep_extend('force', opts or {}, my_opts)
-
       -- short form line indicator
       ---@diagnostic disable-next-line: duplicate-set-field
       require('mini.statusline').section_location = function()
         return '%2l:%-2v'
       end
+
+      vim.opt.showmode = false
+
+      local my_opts = {
+        use_icons = vim.g.have_nerd_font,
+      }
+      opts = vim.tbl_deep_extend('force', opts or {}, my_opts)
 
       return opts
     end,
