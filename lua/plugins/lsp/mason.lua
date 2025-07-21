@@ -31,6 +31,7 @@ for server, conf in pairs(servers) do
 end
 
 return {
+  -- TODO: find an alternative to this, it's the heavist plugin by FAR
   'mason-org/mason-lspconfig.nvim',
   dependencies = {
     {
