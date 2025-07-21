@@ -1,14 +1,14 @@
 return {
   {
     'mikavilpas/yazi.nvim',
-    event = 'VeryLazy',
+    cmd = 'Yazi',
     keys = {
       -- 👇 in this section, choose your own keymappings!
       {
         '<leader>y',
         mode = { 'n', 'v' },
         '<cmd>Yazi<cr>',
-        desc = '[Y]azi',
+        desc = 'Open [Y]azi at current file',
       },
       {
         -- Open in the current working directory
@@ -22,9 +22,10 @@ return {
       -- vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
     end,
+    ---@module 'yazi'
     ---@type YaziConfig | {}
     opts = {
-      -- use yazi as default file explorer instead of netrw
+      -- don't open by default, sometimes I want to use a picker
       open_for_directories = false,
       keymaps = {
         show_help = '<f1>',
