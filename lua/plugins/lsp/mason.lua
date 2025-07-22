@@ -45,28 +45,19 @@ end, { desc = 'Install all defined packages' })
 return {
   {
     'neovim/nvim-lspconfig',
-    lazy = false,
     -- status indicator for LSP's
     dependencies = { { 'j-hui/fidget.nvim', opts = {} } },
   },
   {
     'mason-org/mason.nvim',
-    lazy = true,
-    cmd = {
-      'Mason',
-      'MasonInstall',
-      'MasonUpdate',
-      'MasonLog',
-      'MasonUninstall',
-      'MasonUninstallAll'
-    },
     opts = {
       ui = {
         icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗"
-        }
-      }
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗',
+        },
+      },
     },
-  } }
+  },
+}
