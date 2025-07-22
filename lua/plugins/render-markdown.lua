@@ -6,7 +6,7 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
-      completions = { lsp = { enabled = true } },
+      completions = { blink = { enabled = true } },
       heading = { border = true, border_virtual = true }
     },
   },
