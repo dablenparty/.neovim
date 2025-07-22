@@ -37,9 +37,46 @@ end
 vim.lsp.enable(lsps_to_enable)
 
 vim.api.nvim_create_user_command('MasonInstallAll', function()
-  local mason_pkgs = vim.tbl_keys(lsp_pkgs)
-  vim.cmd { cmd = 'MasonUpdate' }
-  vim.cmd { cmd = 'MasonInstall', args = mason_pkgs }
+  local conform_formatters = require('conform').list_all_formatters()
+  local pkgs_to_install = vim.tbl_keys(lsp_pkgs)
+  for _, fmt in ipairs(conform_formatters) do
+    local pkg = fmt.name
+    if fmt.available then
+      vim.notify(string.format('%s is already available', pkg), vim.log.levels.INFO, { title = 'mason.nvim' })
+    else
+      table.insert(pkgs_to_install, pkg)
+    end
+  end
+
+  local registry = require 'mason-registry'
+  registry.refresh(function()
+    for _, pkg_name in ipairs(pkgs_to_install) do
+      if not registry.has_package(pkg_name) then
+        vim.notify(string.format('%s not found in registry.', pkg_name), vim.log.levels.ERROR)
+        goto continue
+      end
+
+      local pkg = registry.get_package(pkg_name)
+      if pkg:is_installed() then
+        vim.notify(string.format('%s is already installed.', pkg_name), vim.log.levels.INFO, { title = 'mason.nvim' })
+        goto continue
+      end
+
+      -- As best as I can tell, this checks if the package and installer specs are valid
+      if not pkg:is_installable() then
+        vim.notify(string.format('%s is not installable.', pkg_name), vim.log.levels.ERROR, { title = 'mason.nvim' })
+      end
+
+      vim.notify('Installing ' .. pkg_name, vim.log.levels.INFO, { title = 'mason.nvim' })
+      pkg:install({}, function(success, payload)
+        if not success then
+          -- payload is an error
+          vim.notify(string.format('Failed to install %s\n%s', pkg_name, vim.inspect(payload)), vim.log.levels.ERROR, { title = 'mason.nvim' })
+        end
+      end)
+      ::continue::
+    end
+  end)
 end, { desc = 'Install all defined packages' })
 
 return {
