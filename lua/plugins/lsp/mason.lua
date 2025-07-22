@@ -1,8 +1,9 @@
+---@type table<string, { name: string, config: vim.lsp.Config }>
 local lsp_pkgs = {
   basedpyright = {},
   ['bash-language-server'] = {
     name = 'bashls',
-    config = { filetypes = { 'bash', 'sh', 'zsh' } }
+    config = { filetypes = { 'bash', 'sh', 'zsh' } },
   },
   ['dockerfile-language-server'] = { name = 'dockerls' },
   ['docker-compose-language-service'] = { name = 'docker_compose_language_service' },
@@ -20,10 +21,10 @@ local lsp_pkgs = {
             callSnippet = 'Replace',
           },
         },
-      }
-    }
+      },
+    },
   },
-  marksman = {}
+  marksman = {},
 }
 
 local lsps_to_enable = {}
