@@ -81,20 +81,13 @@ vim.api.nvim_create_user_command('MasonInstallAll', function()
 end, { desc = 'Install all defined packages' })
 
 return {
-  {
-    'neovim/nvim-lspconfig',
-    -- status indicator for LSP's
-    dependencies = { { 'j-hui/fidget.nvim', opts = {} } },
-  },
-  {
-    'mason-org/mason.nvim',
-    opts = {
-      ui = {
-        icons = {
-          package_installed = '✓',
-          package_pending = '➜',
-          package_uninstalled = '✗',
-        },
+  'mason-org/mason.nvim',
+  opts = {
+    ui = {
+      icons = {
+        package_installed = '✓',
+        package_pending = '➜',
+        package_uninstalled = '✗',
       },
     },
   },
