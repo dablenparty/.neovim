@@ -58,21 +58,22 @@ vim.api.nvim_create_user_command('MasonInstallAll', function()
       end
 
       local pkg = registry.get_package(pkg_name)
-      if pkg:is_installed() then
-        vim.notify(string.format('%s is already installed.', pkg_name), vim.log.levels.INFO, { title = 'mason.nvim' })
+      local lsp_executable = vim.tbl_keys(pkg.spec.bin)[1] or pkg.name
+      if pkg:is_installed() or vim.fn.executable(lsp_executable) == 1 then
+        vim.notify(string.format('%s is already installed.', pkg.name), vim.log.levels.INFO, { title = 'mason.nvim' })
         goto continue
       end
 
       -- As best as I can tell, this checks if the package and installer specs are valid
       if not pkg:is_installable() then
-        vim.notify(string.format('%s is not installable.', pkg_name), vim.log.levels.ERROR, { title = 'mason.nvim' })
+        vim.notify(string.format('%s is not installable.', pkg.name), vim.log.levels.ERROR, { title = 'mason.nvim' })
       end
 
-      vim.notify('Installing ' .. pkg_name, vim.log.levels.INFO, { title = 'mason.nvim' })
+      vim.notify('Installing ' .. pkg.name, vim.log.levels.INFO, { title = 'mason.nvim' })
       pkg:install({}, function(success, payload)
         if not success then
           -- payload is an error
-          vim.notify(string.format('Failed to install %s\n%s', pkg_name, vim.inspect(payload)), vim.log.levels.ERROR, { title = 'mason.nvim' })
+          vim.notify(string.format('Failed to install %s\n%s', pkg.name, vim.inspect(payload)), vim.log.levels.ERROR, { title = 'mason.nvim' })
         end
       end)
       ::continue::
