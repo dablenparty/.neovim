@@ -6,14 +6,14 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
-      completions = { blink = { enabled = true } },
-      heading = { border = true, border_virtual = true }
+      completions = { lsp = { enabled = true } },
+      heading = { border = true, border_virtual = true },
     },
   },
   {
     'bullets-vim/bullets.vim',
     ft = { 'gitcommit', 'markdown', 'text', 'scratch' },
     -- NOTE: opts won't work, bullets is VimScript
-    config = function() end
-  }
+    config = function() end,
+  },
 }
