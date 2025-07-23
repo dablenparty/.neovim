@@ -1,12 +1,11 @@
 ---@type table<string, { name: string, config: vim.lsp.Config }>
 local lsp_pkgs = {
-  basedpyright = {},
   ['bash-language-server'] = {
     name = 'bashls',
     config = { filetypes = { 'bash', 'sh', 'zsh' } },
   },
-  ['dockerfile-language-server'] = { name = 'dockerls' },
   ['docker-compose-language-service'] = { name = 'docker_compose_language_service' },
+  ['dockerfile-language-server'] = { name = 'dockerls' },
   ['lua-language-server'] = {
     name = 'lua_ls',
     config = {
@@ -25,6 +24,7 @@ local lsp_pkgs = {
     },
   },
   marksman = {},
+  ['python-lsp-server'] = { name = 'pylsp' },
 }
 
 local lsps_to_enable = {}
