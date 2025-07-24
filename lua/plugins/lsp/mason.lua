@@ -37,7 +37,7 @@ end
 
 vim.lsp.enable(lsps_to_enable)
 
-vim.api.nvim_create_user_command('MasonInstallAll', function()
+vim.api.nvim_create_user_command('MasonInstallAll', function(args)
   local conform_formatters = require('conform').list_all_formatters()
   local pkgs_to_install = vim.tbl_keys(lsp_pkgs)
   for _, fmt in ipairs(conform_formatters) do
@@ -78,8 +78,13 @@ vim.api.nvim_create_user_command('MasonInstallAll', function()
       end)
       ::continue::
     end
+
+    if not args.bang then
+      -- open Mason UI
+      vim.cmd 'Mason'
+    end
   end)
-end, { desc = 'Install all defined packages' })
+end, { desc = 'Install all defined packages', bang = true })
 
 return {
   'mason-org/mason.nvim',
