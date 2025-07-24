@@ -29,4 +29,4 @@ require('lazy').setup {
   checker = { enabled = true, notify = false },
 }
 
-require('keymaps').set_global_keymap('<leader>lz', ':Lazy<CR>', 'Open Lazy')
+require('utils').set_global_keymap('<leader>lz', ':Lazy<CR>', 'Open Lazy')

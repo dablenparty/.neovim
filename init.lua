@@ -99,8 +99,9 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'expr'
 
 -- SECTION: Imports
--- NOTE: lazy can import autocmds and keymaps for you on the VeryLazy event, but I don't
--- want to do that.
+-- NOTE: lazy claims it can load autocmds and keymaps automatically on VeryLazy. I have
+-- not been able to get this to work reliably.
+-- https://www.lazyvim.org/configuration/general
 require 'utils'
 require 'autocmds'
 require 'keymaps'

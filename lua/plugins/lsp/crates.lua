@@ -6,7 +6,7 @@ return {
   cmd = { 'Crates' },
   opts = function(_, opts)
     opts = opts or {}
-    local set_global_keymap = require('keymaps').set_global_keymap
+    local set_global_keymap = require('utils').set_global_keymap
 
     -- NOTE: If keys are defined in the plugin spec, they'll act as lazy-loaders for the plugin.
     -- I don't want that, I only want the keymaps set if this plugin is already loaded.
