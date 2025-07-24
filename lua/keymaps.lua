@@ -51,6 +51,8 @@ set_global_keymap('<S-Tab>', '<gv', 'Indent left and reselect', { mode = 'v' })
 ---@param char string
 local function toggle_char_at_eol(char)
   local visual_modes = { ['v'] = true, ['V'] = true, [''] = true }
+  -- subtract 1 because line indices are 1-based
+  local cursor_line = vim.api.nvim_win_get_cursor(0)[1] - 1
   local mode = vim.api.nvim_get_mode().mode
   local start_row, end_row
 
@@ -59,7 +61,6 @@ local function toggle_char_at_eol(char)
     -- EXITING visual mode. So, to prevent changing modes, we instead explicitly fetch
     -- the line numbers of both ends of the Visual area, one of which is conveniently the
     -- cursor. See `:h getpos()` for more info.
-    local cursor_line = vim.fn.line '.' - 1
     local visual_end_line = vim.fn.line 'v' - 1
     -- WARN: Because the cursor could be at the top OR bottom of the region, the
     -- start/end rows must be checked before being assigned.
@@ -71,7 +72,7 @@ local function toggle_char_at_eol(char)
       end_row = cursor_line
     end
   else
-    start_row = vim.api.nvim_win_get_cursor(0)[1] - 1
+    start_row = cursor_line
     end_row = start_row
   end
 
@@ -97,4 +98,4 @@ set_global_keymap(';', function()
 end, 'Toggle semi-colon at EOL', { mode = { 'n', 'x' } })
 set_global_keymap(',', function()
   toggle_char_at_eol ','
-end, 'Toggle comma at EOL')
+end, 'Toggle comma at EOL', { mode = { 'n', 'x' } })
