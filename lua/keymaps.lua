@@ -39,27 +39,27 @@ M.set_global_keymap('y%', function()
 end, 'Yank buffer', { expr = true })
 
 -- navigate windows easier
-M.set_global_keymap("<C-h>", "<C-w>h", "Move to left window")
-M.set_global_keymap("<C-j>", "<C-w>j", "Move to bottom window")
-M.set_global_keymap("<C-k>", "<C-w>k", "Move to top window")
-M.set_global_keymap("<C-l>", "<C-w>l", "Move to right window")
+M.set_global_keymap('<C-h>', '<C-w>h', 'Move to left window')
+M.set_global_keymap('<C-j>', '<C-w>j', 'Move to bottom window')
+M.set_global_keymap('<C-k>', '<C-w>k', 'Move to top window')
+M.set_global_keymap('<C-l>', '<C-w>l', 'Move to right window')
 
 -- NOTE: you can create splits with <C-W>s and <C-W>v
 -- Resize splits
-M.set_global_keymap("<C-Up>", ":resize +2<CR>", "Increase window height")
-M.set_global_keymap("<C-Down>", ":resize -2<CR>", "Decrease window height")
-M.set_global_keymap("<C-Left>", ":vertical resize -2<CR>", "Decrease window width")
-M.set_global_keymap("<C-Right>", ":vertical resize +2<CR>", "Increase window width")
+M.set_global_keymap('<C-Up>', ':resize +2<CR>', 'Increase window height')
+M.set_global_keymap('<C-Down>', ':resize -2<CR>', 'Decrease window height')
+M.set_global_keymap('<C-Left>', ':vertical resize -2<CR>', 'Decrease window width')
+M.set_global_keymap('<C-Right>', ':vertical resize +2<CR>', 'Increase window width')
 
 -- Move lines up/down
-M.set_global_keymap("<A-j>", ":m .+1<CR>==", "Move line down")
-M.set_global_keymap("<A-k>", ":m .-2<CR>==", "Move line up")
-M.set_global_keymap("<A-j>", ":m '>+1<CR>gv=gv", "Move selection down", { mode = 'v' })
-M.set_global_keymap("<A-k>", ":m '<-2<CR>gv=gv", "Move selection up", { mode = 'v' })
+M.set_global_keymap('<A-j>', ':m .+1<CR>==', 'Move line down')
+M.set_global_keymap('<A-k>', ':m .-2<CR>==', 'Move line up')
+M.set_global_keymap('<A-j>', ":m '>+1<CR>gv=gv", 'Move selection down', { mode = 'v' })
+M.set_global_keymap('<A-k>', ":m '<-2<CR>gv=gv", 'Move selection up', { mode = 'v' })
 
 -- VSCode-style indenting in visual mode
-M.set_global_keymap("<Tab>", ">gv", "Indent right and reselect", { mode = "v" })
-M.set_global_keymap("<S-Tab>", "<gv", "Indent left and reselect", { mode = "v" })
+M.set_global_keymap('<Tab>', '>gv', 'Indent right and reselect', { mode = 'v' })
+M.set_global_keymap('<S-Tab>', '<gv', 'Indent left and reselect', { mode = 'v' })
 
 ---Add/remove a character at the end of a line
 ---@param char string
@@ -73,8 +73,8 @@ local function toggle_char_at_eol(char)
     -- EXITING visual mode. So, to prevent changing modes, we instead explicitly fetch
     -- the line numbers of both ends of the Visual area, one of which is conveniently the
     -- cursor. See `:h getpos()` for more info.
-    local cursor_line = vim.fn.line('.') - 1
-    local visual_end_line = vim.fn.line('v') - 1
+    local cursor_line = vim.fn.line '.' - 1
+    local visual_end_line = vim.fn.line 'v' - 1
     -- WARN: Because the cursor could be at the top OR bottom of the region, the
     -- start/end rows must be checked before being assigned.
     if cursor_line < visual_end_line then
@@ -107,10 +107,10 @@ local function toggle_char_at_eol(char)
 end
 
 M.set_global_keymap(';', function()
-  toggle_char_at_eol(';')
+  toggle_char_at_eol ';'
 end, 'Toggle semi-colon at EOL', { mode = { 'n', 'x' } })
 M.set_global_keymap(',', function()
-  toggle_char_at_eol(',')
+  toggle_char_at_eol ','
 end, 'Toggle comma at EOL')
 
 return M

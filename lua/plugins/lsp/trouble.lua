@@ -27,14 +27,14 @@ return {
       desc = '[D]iagnostics',
     },
     {
-      "<leader>ts",
-      "<cmd>Trouble symbols toggle focus=false<cr>",
-      desc = "[S]ymbols",
+      '<leader>ts',
+      '<cmd>Trouble symbols toggle focus=false<cr>',
+      desc = '[S]ymbols',
     },
     {
-      "<leader>tl",
-      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-      desc = "[L]SP Definitions / references / ...",
+      '<leader>tl',
+      '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+      desc = '[L]SP Definitions / references / ...',
     },
     {
       '<leader>tL',

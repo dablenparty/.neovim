@@ -1,6 +1,6 @@
 -- SECTION: Visuals
 -- NOTE: default colorscheme must come before highlights
-vim.cmd.colorscheme('unokai')
+vim.cmd.colorscheme 'unokai'
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'EndOfBuffer', { bg = 'none' })
@@ -54,9 +54,9 @@ vim.opt.smartcase = true
 
 -- SECTION: Autocompletion
 vim.opt.completeopt = 'fuzzy,menuone,noinsert,noselect,popup'
-vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.jar" })
+vim.opt.wildignore:append { '*.o', '*.obj', '*.pyc', '*.jar' }
 vim.opt.wildmenu = true
-vim.opt.wildmode = "longest:full,full"
+vim.opt.wildmode = 'longest:full,full'
 
 -- SECTION: File Handling
 vim.opt.autoread = true
@@ -78,16 +78,16 @@ vim.opt.writebackup = false
 -- SECTION: General Behavior
 vim.opt.backspace = 'indent,eol,start'
 -- yank text to registers "+" and "*", and to system clipboard
-vim.opt.clipboard:append('unnamedplus')
+vim.opt.clipboard:append 'unnamedplus'
 vim.opt.errorbells = false
 vim.opt.hidden = true
 -- treat "-" as part of a keyword (e.g. kebab-case becomes one keyword)
-vim.opt.iskeyword:append('-')
+vim.opt.iskeyword:append '-'
 -- allow buffers to be modified
 vim.opt.modifiable = true
 vim.opt.mouse = 'a'
 -- include subdirs in path search
-vim.opt.path:append('**')
+vim.opt.path:append '**'
 vim.opt.selection = 'exclusive'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -99,10 +99,12 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'expr'
 
 -- SECTION: Imports
+-- NOTE: lazy can import autocmds and keymaps for you on the VeryLazy event, but I don't
+-- want to do that.
 require 'utils'
 require 'autocmds'
 require 'keymaps'
 -- imports plugins and themes
 require 'config.lazy'
 
-vim.cmd.colorscheme('everforest')
+vim.cmd.colorscheme 'everforest'

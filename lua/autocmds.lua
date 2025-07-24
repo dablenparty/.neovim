@@ -1,6 +1,6 @@
 -- GROUP: Default
 -- Return to last edit position when opening files
-vim.api.nvim_create_autocmd("BufReadPost", {
+vim.api.nvim_create_autocmd('BufReadPost', {
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -25,11 +25,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 local file_fixes_augroup = vim.api.nvim_create_augroup('filetype-fixes', { clear = true })
 
 -- Create directories when saving files
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd('BufWritePre', {
   group = file_fixes_augroup,
   callback = function()
     -- expand the autocommand file path and take the head (dirname)
-    local dir = vim.fn.expand('<afile>:p:h')
+    local dir = vim.fn.expand '<afile>:p:h'
     if vim.fn.isdirectory(dir) == 0 then
       vim.fn.mkdir(dir, 'p')
     end
@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 local term_augroup = vim.api.nvim_create_augroup('term-changes', { clear = true })
 
 -- Disable line numbers in terminal
-vim.api.nvim_create_autocmd("TermOpen", {
+vim.api.nvim_create_autocmd('TermOpen', {
   group = term_augroup,
   callback = function()
     vim.opt_local.number = false
@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 -- Auto-close terminal when process exits
-vim.api.nvim_create_autocmd("TermClose", {
+vim.api.nvim_create_autocmd('TermClose', {
   group = term_augroup,
   callback = function()
     if vim.v.event.status == 0 then
@@ -147,9 +147,9 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEn
 local window_augroup = vim.api.nvim_create_augroup('window-funcs', { clear = true })
 
 -- Auto-resize splits when window is resized
-vim.api.nvim_create_autocmd("VimResized", {
+vim.api.nvim_create_autocmd('VimResized', {
   group = window_augroup,
   callback = function()
-    vim.cmd("tabdo wincmd =")
+    vim.cmd 'tabdo wincmd ='
   end,
 })
