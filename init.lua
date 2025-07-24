@@ -8,16 +8,16 @@ vim.g.have_nerd_font = true
 -- TODO: auto cmdheight
 vim.opt.cmdheight = 1
 -- highlight column 90
-vim.opt.colorcolumn = '90'
+vim.opt.colorcolumn = '100'
 -- don't hide markup text
 vim.opt.concealcursor = ''
 vim.opt.conceallevel = 1
 vim.opt.cursorline = true
-vim.opt.number = true
 -- popup menu transparency
 vim.opt.pumblend = 8
 vim.opt.pumheight = 8
 vim.opt.relativenumber = true
+vim.opt.number = true
 -- highlight matching bracket(s)
 vim.opt.showmatch = true
 vim.opt.signcolumn = 'yes'
