@@ -50,7 +50,7 @@ set_global_keymap('<S-Tab>', '<gv', 'Indent left and reselect', { mode = 'v' })
 ---Add/remove a character at the end of a line
 ---@param char string
 local function toggle_char_at_eol(char)
-  local visual_modes = { ['v'] = true, ['V'] = true, [''] = true }
+  local visual_modes = { ['v'] = true, ['V'] = true, ['\22'] = true }
   -- subtract 1 because line indices are 1-based
   local cursor_line = vim.api.nvim_win_get_cursor(0)[1] - 1
   local mode = vim.api.nvim_get_mode().mode
