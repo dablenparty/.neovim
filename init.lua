@@ -52,7 +52,7 @@ vim.opt.inccommand = 'split'
 vim.opt.incsearch = true
 vim.opt.smartcase = true
 
--- SECTION: Autocompletion
+-- SECTION: Built-in Autocompletion
 vim.opt.completeopt = 'fuzzy,menuone,noinsert,noselect,popup'
 vim.opt.wildignore:append { '*.o', '*.obj', '*.pyc', '*.jar' }
 vim.opt.wildmenu = true
@@ -88,7 +88,6 @@ vim.opt.modifiable = true
 vim.opt.mouse = 'a'
 -- include subdirs in path search
 vim.opt.path:append '**'
-vim.opt.selection = 'exclusive'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
