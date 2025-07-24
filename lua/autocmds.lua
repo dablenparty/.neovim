@@ -54,6 +54,16 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   command = 'set statuscolumn=',
 })
 
+-- Reload open buffers if they've been edited (must set autoread)
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'CmdlineLeave' }, {
+  group = file_fixes_augroup,
+  callback = function(event)
+    if vim.o.buftype[event.buf] ~= 'nofile' then
+      vim.cmd('checktime ' .. event.buf)
+    end
+  end,
+})
+
 -- GROUP: Terminal Enhancements
 local term_augroup = vim.api.nvim_create_augroup('term-changes', { clear = true })
 
