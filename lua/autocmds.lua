@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'CmdlineLeave' }, {
   group = file_fixes_augroup,
   callback = function(event)
-    if vim.o.buftype[event.buf] ~= 'nofile' then
+    if vim.api.nvim_buf_is_valid(event.buf) and vim.bo[event.buf].buftype ~= 'nofile' then
       vim.cmd('checktime ' .. event.buf)
     end
   end,
@@ -81,9 +81,10 @@ vim.api.nvim_create_autocmd('TermOpen', {
 -- Auto-close terminal when process exits
 vim.api.nvim_create_autocmd('TermClose', {
   group = term_augroup,
-  callback = function()
-    if vim.v.event.status == 0 then
-      vim.api.nvim_buf_delete(0, {})
+  callback = function(event)
+    local buf = event.buf
+    if vim.v.event.status == 0 and vim.api.nvim_buf_is_valid(buf) then
+      vim.api.nvim_buf_delete(buf, {})
     end
   end,
 })
