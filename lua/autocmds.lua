@@ -112,37 +112,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- GROUP: Status, Sign, and Line Number Columns
--- Modified from: https://github.com/sitiom/nvim-numbertoggle/blob/main/plugin/numbertoggle.lua
--- Show absolute line numbers in Insert mode and when the window loses focus
-local relative_line_nums_augroup = vim.api.nvim_create_augroup('relative-line-numbers', { clear = true })
-
-vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'CmdlineLeave', 'WinEnter' }, {
-  pattern = '*',
-  group = relative_line_nums_augroup,
-  callback = function()
-    -- if line numbers are enabled
-    if vim.o.nu then
-      vim.opt.relativenumber = true
-    end
-  end,
-})
-
-vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, {
-  pattern = '*',
-  group = relative_line_nums_augroup,
-  callback = function()
-    if vim.o.nu then
-      vim.opt.relativenumber = false
-      -- Conditional taken from https://github.com/rockyzhang24/dotfiles/commit/03dd14b5d43f812661b88c4660c03d714132abcf
-      -- Workaround for https://github.com/neovim/neovim/issues/32068
-      if not vim.tbl_contains({ '@', '-' }, vim.v.event.cmdtype) then
-        vim.cmd 'redraw'
-      end
-    end
-  end,
-})
-
 -- GROUP: Window Functions
 local window_augroup = vim.api.nvim_create_augroup('window-funcs', { clear = true })
 
