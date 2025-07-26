@@ -48,8 +48,8 @@ set_global_keymap('<Tab>', '>gv', 'Indent right and reselect', { mode = 'v' })
 set_global_keymap('<S-Tab>', '<gv', 'Indent left and reselect', { mode = 'v' })
 
 ---Add/remove a character at the end of a line
----@param char string
-local function toggle_char_at_eol(char)
+---@param eol_str string
+local function toggle_str_at_eol(eol_str)
   local visual_modes = { ['v'] = true, ['V'] = true, ['\22'] = true }
   -- subtract 1 because line indices are 1-based
   local cursor_line = vim.api.nvim_win_get_cursor(0)[1] - 1
@@ -80,22 +80,25 @@ local function toggle_char_at_eol(char)
   local lines = vim.api.nvim_buf_get_lines(0, start_row, end_row + 1, strict_indexing)
 
   for row = start_row, end_row do
-    -- local row = cursor_pos[1] - 1
     local line = lines[(row - start_row) + 1]
-    local last_char = line:sub(#line, #line)
-    if last_char == char then
+    -- subtract 1 because start of range is inclusive
+    local last_char = line:sub(#line - (#eol_str - 1), #line)
+    if last_char == eol_str then
       -- remove char
-      vim.api.nvim_buf_set_text(0, row, #line - 1, row, #line, {})
+      vim.api.nvim_buf_set_text(0, row, #line - #eol_str, row, #line, {})
     else
       -- add char
-      vim.api.nvim_buf_set_text(0, row, #line, row, #line, { char })
+      vim.api.nvim_buf_set_text(0, row, #line, row, #line, { eol_str })
     end
   end
 end
 
+set_global_keymap('?', function()
+  toggle_str_at_eol '?;'
+end, 'Toggle ?; at EOL', { mode = { 'n', 'x' } })
 set_global_keymap(';', function()
-  toggle_char_at_eol ';'
+  toggle_str_at_eol ';'
 end, 'Toggle semi-colon at EOL', { mode = { 'n', 'x' } })
 set_global_keymap(',', function()
-  toggle_char_at_eol ','
+  toggle_str_at_eol ','
 end, 'Toggle comma at EOL', { mode = { 'n', 'x' } })
