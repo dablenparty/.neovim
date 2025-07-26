@@ -33,6 +33,9 @@ return {
 
           -- misc
           set_key('n', 'gx', '<cmd>RustLsp openDocs<CR>', 'Open docs.rs for the symbol under the cursor.')
+          set_key({ 'n', 'x' }, '?', function()
+            require('utils').toggle_str_at_eol '?;'
+          end, 'Toggle ?; at EOL')
         end,
       },
       tools = {
