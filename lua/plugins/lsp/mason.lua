@@ -1,3 +1,4 @@
+---Keys are Mason package names, values are LSP names & configs
 ---@type table<string, { name: string, config: vim.lsp.Config }>
 local lsp_pkgs = {
   ['bash-language-server'] = {
