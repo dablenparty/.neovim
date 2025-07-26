@@ -37,6 +37,31 @@ end
 
 vim.lsp.enable(lsps_to_enable)
 
+vim.api.nvim_create_user_command('MasonUpdateAllPkgs', function(args)
+  local registry = require 'mason-registry'
+  registry.refresh(function()
+    ---@type Package[]
+    local installed_pkgs = registry.get_installed_packages()
+    if #installed_pkgs == 0 then
+      vim.notify('No packages are installed.', vim.log.levels.WARN, { title = 'mason.nvim' })
+    end
+    for _, pkg in ipairs(installed_pkgs) do
+      vim.notify('Updating ' .. pkg.name, vim.log.levels.INFO, { title = 'mason.nvim' })
+      pkg:install({}, function(success, payload)
+        if not success then
+          -- payload is an error
+          vim.notify(string.format('Failed to update %s\n%s', pkg.name, vim.inspect(payload)), vim.log.levels.ERROR, { title = 'mason.nvim' })
+        end
+      end)
+    end
+  end)
+
+  if not args.bang then
+    -- Open mason UI
+    vim.cmd 'Mason'
+  end
+end, { desc = 'Update all installed packages', bang = true })
+
 vim.api.nvim_create_user_command('MasonInstallAll', function(args)
   local conform_formatters = require('conform').list_all_formatters()
   local pkgs_to_install = vim.tbl_keys(lsp_pkgs)
@@ -53,14 +78,14 @@ vim.api.nvim_create_user_command('MasonInstallAll', function(args)
   registry.refresh(function()
     for _, pkg_name in ipairs(pkgs_to_install) do
       if not registry.has_package(pkg_name) then
-        vim.notify(string.format('%s not found in registry.', pkg_name), vim.log.levels.ERROR)
+        vim.notify(string.format('%s not found in registry.', pkg_name), vim.log.levels.ERROR, { title = 'mason.nvim' })
         goto continue
       end
 
       local pkg = registry.get_package(pkg_name)
       local lsp_executable = vim.tbl_keys(pkg.spec.bin)[1] or pkg.name
-      if pkg:is_installed() or vim.fn.executable(lsp_executable) == 1 then
-        vim.notify(string.format('%s is already installed.', pkg.name), vim.log.levels.INFO, { title = 'mason.nvim' })
+      if registry.is_installed(pkg.name) or vim.fn.executable(lsp_executable) == 1 then
+        vim.notify(string.format('%s is installed externally.', pkg.name), vim.log.levels.INFO, { title = 'mason.nvim' })
         goto continue
       end
 
