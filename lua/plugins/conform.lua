@@ -38,6 +38,7 @@ return {
       }
     end,
     formatters_by_ft = {
+      -- NOTE: shfmt <=3.12.0 doesn't support bash 5.3
       bash = { 'shfmt', 'shellcheck' },
       json = { 'jq' },
       jsonc = { 'jq' },
