@@ -52,6 +52,11 @@ return {
       rust = { 'rustfmt' },
       sh = { 'shfmt', 'shellcheck' },
       zsh = { 'shfmt', 'shellcheck' },
+      -- Use the "*" filetype to run formatters on all filetypes.
+      ['*'] = { 'codespell' },
+      -- Use the "_" filetype to run formatters on filetypes that don't
+      -- have other formatters configured.
+      ['_'] = { 'trim_whitespace' },
     },
     formatters = {
       ['markdownlint-cli2'] = {
@@ -66,5 +71,5 @@ return {
         prepend_args = { '-i', '2' },
       },
     },
-  }
+  },
 }
