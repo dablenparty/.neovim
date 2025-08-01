@@ -6,13 +6,15 @@ My custom Neovim config, written from scratch for `nvim 0.11`.
 
 - A [Nerd Font](https://www.nerdfonts.com/)
   - At the time of writing, I use [JetBrains Mono](https://www.programmingfonts.org/#jetbrainsmono)
-- Basic utils: `git`, `unzip`
+- Basic utils: `gcc`, `git`, `unzip`
 - Clipboard tool
   - Used to sync clipbord with neovim
-  - Wayland needs wl-clipboard
+  - Wayland needs `wl-clipboard`
 - CMake or `make`
 - [`fd`](https://github.com/sharkdp/fd)
-- `gcc`
+  - Better `find` utility
+- Golang (`go`)
+  - Necessary to install [`docker-language-server`](lua/plugins/lsp/mason.lua#L8-L19).
 - NodeJS, NPM, and Yarn (use a version manager like `fnm`)
   - `npm i -g yarn`
   - Although very few of them actually specify this, NPM is needed to install ~~most~~ some language servers.
