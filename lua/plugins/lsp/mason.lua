@@ -5,8 +5,18 @@ local lsp_pkgs = {
     name = 'bashls',
     config = { filetypes = { 'bash', 'sh', 'zsh' } },
   },
-  ['docker-compose-language-service'] = { name = 'docker_compose_language_service' },
-  ['dockerfile-language-server'] = { name = 'dockerls' },
+  -- NOTE: mason doesn't currently have this LSP. Install with go:
+  -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
+  ['docker-language-server'] = {
+    name = 'docker_language_server',
+    config = {
+      settings = {
+        initializationOptions = {
+          telemetry = 'off',
+        },
+      },
+    },
+  },
   ['lua-language-server'] = {
     name = 'lua_ls',
     config = {
@@ -79,7 +89,11 @@ vim.api.nvim_create_user_command('MasonInstallAll', function(args)
   registry.refresh(function()
     for _, pkg_name in ipairs(pkgs_to_install) do
       if not registry.has_package(pkg_name) then
-        vim.notify(string.format('%s not found in registry.', pkg_name), vim.log.levels.ERROR, { title = 'mason.nvim' })
+        if vim.fn.executable(pkg_name) == 1 then
+          vim.notify(string.format('%s not found in registry, but is installed externally', pkg_name), vim.log.levels.WARN, { title = 'mason.nvim' })
+        else
+          vim.notify(string.format('%s not found in registry.', pkg_name), vim.log.levels.ERROR, { title = 'mason.nvim' })
+        end
         goto continue
       end
 
