@@ -61,14 +61,17 @@ return {
       },
     },
 
+    -- stylua: ignore
+    -- align on commas: gL,
     spec = {
-      { '<leader>c',  group = '[C]ode',       mode = { 'n', 'x' } },
+      { '<leader>c',  group = '[C]ode',            mode = { 'n', 'x' } },
       { '<leader>d',  group = '[D]iagnostics' },
       { '<leader>f',  group = '[F]ind...' },
       { '<leader>g',  group = '[G]it' },
       { '<leader>gu', group = '[G]it Toggles' },
-      { '<leader>gh', group = '[G]it [H]unks' },
-      { '<leader>h',  group = 'Git [H]unk',   mode = { 'n', 'v' } },
+      { '<leader>gh', group = '[H]unks',           mode = {'n',  'x', 'o'} },
+      { '<leader>h',  group = 'Git [H]unk',        mode = { 'n', 'v' } },
+      { '<leader>j',  group = '[J]ump with Flash', mode = { 'n', 'x', 'o', 'c' } },
       { '<leader>r',  group = '[R]efactor' },
       { '<leader>s',  group = '[S]earch...' },
       { '<leader>t',  group = '[T]rouble' },
