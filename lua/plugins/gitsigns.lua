@@ -17,24 +17,32 @@ return {
         vim.keymap.set(mode, l, r, opts)
       end
 
-      set_key('n', '<leader>ghp', gitsigns.preview_hunk, { desc = '[g]it [H]unk [P]review' })
-      set_key('n', '<leader>ghi', gitsigns.preview_hunk_inline, { desc = '[g]it [H]unk H[i]ghlight' })
-      set_key({ 'n', 'v' }, '<leader>ghs', gitsigns.stage_hunk, { desc = '[g]it [H]unk [S]tage' })
+      set_key('n', '<leader>ghp', gitsigns.preview_hunk, { desc = '[P]review [H]unk' })
+      set_key('n', '<leader>ghi', gitsigns.preview_hunk_inline, { desc = 'H[i]ghlight [H]unk' })
+      set_key('n', '<leader>ghs', gitsigns.stage_hunk, { desc = '[S]tage [H]unk' })
+
+      set_key('v', '<leader>ghs', function()
+        gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+      end, { desc = '[S]tage Selected [H]unk' })
+
+      set_key('v', '<leader>ghr', function()
+        gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+      end, { desc = '[R]eset Selected [H]unk' })
 
       set_key('n', '<leader>gb', function()
         gitsigns.blame_line { full = true }
-      end, { desc = '[g]it line [b]lame' })
+      end, { desc = 'line [b]lame' })
 
-      set_key('n', '<leader>gd', gitsigns.diffthis, { desc = '[g]it [d]iff against index' })
+      set_key('n', '<leader>gd', gitsigns.diffthis, { desc = '[d]iff against index' })
 
       set_key('n', '<leader>gD', function()
         gitsigns.diffthis '~'
-      end, { desc = '[g]it [d]iff against last commit' })
+      end, { desc = '[d]iff against last commit' })
 
-      set_key('n', '<leader>ghq', gitsigns.setqflist, { desc = 'Send buffer [g]it [h]unks to [q]uickfix' })
+      set_key('n', '<leader>ghq', gitsigns.setqflist, { desc = 'Send buffer [h]unks to [q]uickfix' })
       set_key('n', '<leader>ghQ', function()
         gitsigns.setqflist 'all'
-      end, { desc = 'Send all [g]it [h]unks to [q]uickfix' })
+      end, { desc = 'Send all [h]unks to [q]uickfix' })
 
       -- Toggles
       Snacks.toggle
