@@ -31,7 +31,13 @@ return {
       nerd_font_variant = 'mono',
     },
 
-    completion = { documentation = { auto_show = false } },
+    completion = {
+      menu = {
+        border = 'none',
+        scrolloff = 1,
+      },
+      documentation = { auto_show = false },
+    },
 
     sources = {
       per_filetype = {

@@ -25,6 +25,7 @@ vim.opt.signcolumn = 'yes'
 vim.opt.termguicolors = true
 -- floating window transparency
 vim.opt.winblend = 0
+vim.opt.winborder = 'rounded'
 
 -- SECTION: Basic Text Processing
 vim.opt.autoindent = true
