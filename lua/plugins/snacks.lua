@@ -9,7 +9,6 @@ return {
       indent = { enabled = true },
       -- better vim.ui.input
       input = { enabled = true },
-      lazygit = { enabled = true },
       -- better vim.notify
       notifier = { enabled = true },
       picker = { enabled = true },
@@ -91,28 +90,6 @@ return {
           Snacks.picker.git_files()
         end,
         desc = 'Find Git Files',
-      },
-      -- git
-      {
-        '<leader>lf',
-        function()
-          Snacks.lazygit.log_file()
-        end,
-        desc = '[L]azygit Current [F]ile History',
-      },
-      {
-        '<leader>lg',
-        function()
-          Snacks.lazygit()
-        end,
-        desc = 'Lazygit',
-      },
-      {
-        '<leader>ll',
-        function()
-          Snacks.lazygit.log()
-        end,
-        desc = '[L]azygit [L]og (cwd)',
       },
       -- Grep/Search
       {
