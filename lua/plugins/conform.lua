@@ -54,7 +54,8 @@ return {
       sh = { 'shfmt', 'shellcheck' },
       zsh = { 'shfmt', 'shellcheck' },
       -- Use the "*" filetype to run formatters on all filetypes.
-      ['*'] = { 'codespell' },
+      -- NOTE: don't use codespell, it will overwrite imports and cause build errors
+      -- ['*'] = { 'codespell' },
       -- Use the "_" filetype to run formatters on filetypes that don't
       -- have other formatters configured.
       ['_'] = { 'trim_whitespace' },
