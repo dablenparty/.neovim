@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 local file_fixes_augroup = vim.api.nvim_create_augroup('filetype-fixes', { clear = true })
 
 -- Create directories when saving files
-vim.api.nvim_create_autocmd('BufWritePre', {
+vim.api.nvim_create_autocmd({ 'BufWritePre', 'FileWritePre' }, {
   group = file_fixes_augroup,
   callback = function()
     -- expand the autocommand file path and take the head (dirname)
