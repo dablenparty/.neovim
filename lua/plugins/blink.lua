@@ -34,9 +34,38 @@ return {
     completion = {
       menu = {
         border = 'none',
+        draw = {
+          -- treesitter highlighting for LSP sources
+          treesitter = { 'lsp' },
+          -- Components to render, grouped by column
+          columns = {
+            { 'kind_icon' },
+            { 'label', 'label_description', gap = 1 },
+            { 'source_name' },
+          },
+          components = {
+            source_name = {
+              text = function(ctx)
+                if ctx.source_id == 'cmdline' then
+                  return 'cmdline'
+                end
+                return ctx.source_name:sub(1, 4)
+              end,
+            },
+          },
+        },
         scrolloff = 1,
       },
       documentation = { auto_show = false },
+    },
+
+    fuzzy = {
+      implementation = 'prefer_rust_with_warning',
+      sorts = {
+        'exact',
+        'score',
+        'sort_text',
+      },
     },
 
     sources = {
@@ -63,12 +92,6 @@ return {
         },
       },
     },
-    -- Blink.cmp uses a Rust fuzzy matcher by default for typo resistance and significantly better performance
-    -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-    -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-    --
-    -- See the fuzzy documentation for more information
-    fuzzy = { implementation = 'prefer_rust_with_warning' },
   },
   opts_extend = { 'sources.default' },
 }
