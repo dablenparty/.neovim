@@ -52,6 +52,7 @@ return {
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
       rust = { 'rustfmt' },
       sh = { 'shfmt', 'shellcheck' },
+      sql = { 'sql_formatter', 'sleek', stop_after_first = true },
       zsh = { 'shfmt', 'shellcheck' },
       -- Use the "*" filetype to run formatters on all filetypes.
       -- NOTE: don't use codespell, it will overwrite imports and cause build errors
