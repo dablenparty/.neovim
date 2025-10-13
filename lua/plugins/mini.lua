@@ -17,14 +17,14 @@ return {
     -- Move cursor to corresponding edge of `a` textobject
     -- goto_left = 'g[',
     -- goto_right = 'g]',
-    'echasnovski/mini.ai',
+    'nvim-mini/mini.ai',
     event = 'VeryLazy',
     opts = {
       n_lines = n_lines,
     },
   },
   {
-    'echasnovski/mini.pairs',
+    'nvim-mini/mini.pairs',
     event = 'InsertEnter',
     opts = {
       modes = { insert = true, command = true, terminal = true },
@@ -46,7 +46,7 @@ return {
     --
     -- suffix_last = 'l', -- Suffix to search with "prev" method
     -- suffix_next = 'n', -- Suffix to search with "next" method
-    'echasnovski/mini.surround',
+    'nvim-mini/mini.surround',
     event = 'VeryLazy',
     opts = {
       n_lines = n_lines,
@@ -56,10 +56,10 @@ return {
   },
   -- Highlights trailing whitespace.
   -- Some LSP's (like luals) handle this already.
-  { 'echasnovski/mini.trailspace', opts = {} },
+  { 'nvim-mini/mini.trailspace', opts = {} },
   {
-    'echasnovski/mini.statusline',
-    dependencies = { 'echasnovski/mini.icons', opts = {} },
+    'nvim-mini/mini.statusline',
+    dependencies = { 'nvim-mini/mini.icons', opts = {} },
     opts = function(_, opts)
       -- short form line indicator
       ---@diagnostic disable-next-line: duplicate-set-field
