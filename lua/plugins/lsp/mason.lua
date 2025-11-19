@@ -17,6 +17,14 @@ local lsp_pkgs = {
       },
     },
   },
+  hyprls = {
+    config = {
+      name = 'hyprlang',
+      cmd = { 'hyprls' },
+      root_dir = vim.fn.getcwd(),
+      filetypes = { '*.hl', 'hypr*.conf' },
+    },
+  },
   ['lua-language-server'] = {
     name = 'lua_ls',
     config = {
