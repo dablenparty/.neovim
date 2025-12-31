@@ -40,7 +40,7 @@ return {
     },
   },
   opts = {
-    kind = 'floating',
+    kind = 'tab',
     graph_style = 'unicode',
     process_spinner = true,
     mappings = {
