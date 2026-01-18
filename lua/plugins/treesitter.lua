@@ -6,7 +6,7 @@ return {
     lazy = false,
     keys = {
       { '<c-space>', desc = 'Increment Selection' },
-      { '<bs>',      desc = 'Decrement Selection', mode = 'x' },
+      { '<bs>', desc = 'Decrement Selection', mode = 'x' },
     },
     config = function()
       local ensure_installed = {
@@ -19,14 +19,12 @@ return {
         'javascript',
         'jsdoc',
         'json',
-        'jsonc',
         'latex',
         'lua',
         'luadoc',
         'luap',
         'markdown',
         'markdown_inline',
-        'norg',
         'printf',
         'python',
         'query',
@@ -149,9 +147,9 @@ return {
         -- and should return the mode ('v', 'V', or '<c-v>') or a table
         -- mapping query_strings to modes.
         selection_modes = {
-          ['@function.outer'] = 'v',    -- linewise
+          ['@function.outer'] = 'v', -- linewise
           ['@conditional.outer'] = 'v', -- linewise
-          ['@parameter.outer'] = 'v',   -- charwise
+          ['@parameter.outer'] = 'v', -- charwise
         },
         -- If you set this to `true` (default is `false`) then any textobject is
         -- extended to include preceding or succeeding whitespace. Succeeding
